@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies</title>
+    <style>
+      table, th, td {
+        border: 1px solid;
+        border-collapse: collapse;
+      }
+    </style>
+</head>
+<body>
+  <div>
+      <h1> Add Movie </h1>
+      <form id="movie-form" method="POST" action="/movie">
+        <label for="movie-name">Movie Name </label>
+        <input type="text" id="movie-name" name="movie-name" required><br>
+
+        <label for="director-name">Director Name </label>
+        <input type="text" id="director-name" name="director-name" required><br>
+
+        <label for="actor-names">Actors: </label>
+        <select id="actor-names" name="actor-names" multiple>
+            {% for actor in actors %}
+                <option value="{{actor.get('id')}}"> {{actor.get('name')}} </option>
+            {% endfor %}
+        </select><br>
+
+        <label for="language">Language</label>
+        <input type="text" id="language" name="language" required><br>
+
+        <label for="production-name">Production Name </label>
+        <input type="text" id="production-name" name="production-name" required><br>
+
+        <label for="rating">Rating </label>
+        <input type="number" id="rating" name="rating" max="5" min="1" required><br>
+        <button type="submit">Submit </button>
+      </form>
+  </div>
+
+  <div>
+    {% if movies %}
+      <h1> Movies List </h1>
+      <table>
+        <thead>
+          <td> Name </td>
+          <td> Director </td>
+          <td> Language </td>
+          <td> production </td>
+          <td> Rating </td>
+          <td> Actors Name </td>
+        </thead>
+        <tbody>
+          {% for movie in movies %}
+            <tr style="border: 1px solid black;">
+              <td>{{movies.get(movie).get("name") }}</td>
+              <td>{{movies.get(movie).get("director") }}</td>
+              <td>{{movies.get(movie).get("language") }}</td>
+              <td>{{movies.get(movie).get("production") }}</td>
+              <td>{{movies.get(movie).get("rating") }}</td>
+              <td>{{",".join(movies.get(movie).get("actors")) }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+
+      </table>
+    {% endif %}
+  </div>
+</body>
+</html>

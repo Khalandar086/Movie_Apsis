@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>actors</title>
+</head>
+<body>
+    <div>
+        <h1> Add Actor </h1>
+        <form id="Actor-form" method="Post" action="/actor">
+            <label for="actor-first_name"> Actor First Name </label>
+            <input type='text' id="actor-first_name" name="actor-first_name" required><br>
+
+            <label for="actor-last_name"> Actor Last Name </label>
+            <input type='text' id="actor-last_name" name="actor-last_name" required><br>
+
+            <label for="actor-industry"> Actor Industry: </label>
+            <select  id="actor-industry" name="actor-industry">
+                <option value="TFI"> Male </option>
+                <option value="KFI"> FeMale </option>
+                <option value="O"> Others </option>
+            </select><br>
+
+            <label for="actor-gender"> Actor Gender: </label>
+            <select  id="actor-gender" name="actor-gender">
+                <option value="M"> Male </option>
+                <option value="F"> FeMale </option>
+                <option value="O"> Others </option>
+            </select>
+
+            <label for="actor-dob"> Actor Dob </label>
+            <input type="date" id="actor-dob" name="actor-dob" required>
+            <button type="submit">Submit</button>
+
+        </form>
+    </div>
+        <div>
+        {% if actors %}
+          <h1> Actors List </h1>
+          <table>
+            <thead>
+              <td> First Name </td>
+              <td> Last Name </td>
+              <td> Gender </td>
+              <td> DOB </td>
+              <td> Industry </td>
+            </thead>
+            <tbody>
+              {% for actor in actors %}
+                <tr style="border: 1px solid black;">
+                  <td>{{actor.get("first_name") }}</td>
+                  <td>{{actor.get("last_name") }}</td>
+                  <td>{{actor.get("gender") }}</td>
+                  <td>{{actor.get("dob") }}</td>
+                  <td>{{actor.get("industry") }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+
+          </table>
+        {% endif %}
+      </div>
+
+</body>
+</html>

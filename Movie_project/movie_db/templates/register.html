@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Page</title>
+    <style>
+      table, th, td {
+        border: 1px solid;
+        border-collapse: collapse;
+      }
+    </style>
+</head>
+<body>
+  <div>
+      <h1> Register </h1>
+      <form id="user-form" method="POST" action="/user">
+        <label for="user-first_name"> First Name </label>
+        <input type="text" id="user-first_name" name="user-first_name" required><br>
+
+        <label for="user-last_name"> Last Name </label>
+        <input type="text" id="user-last_name" name="user-last_name" required><br>
+
+        <label for="user-gender"> Gender: </label>
+        <select id="user-gender" name="user-gender" required>
+          <option value="M"> Male </option>
+          <option value="F"> Female </option>
+          <option value="O"> Other </option>
+        </select><br>
+
+
+
+        <button type="submit">Login </button>
+      </form>
+  </div>
+
+  <div>
+    {% if user %}
+      <h1> user List </h1>
+      <table>
+        <thead>
+          <td> First Name </td>
+          <td> Last Name </td>
+          <td> Gender </td>
+        <tbody>
+          {% for user in user %}
+            <tr style="border: 1px solid black;">
+              <td>{{user.get("first_name") }}</td>
+              <td>{{user.get("last_name") }}</td>
+              <td>{{user.get("gender") }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+
+      </table>
+    {% endif %}
+  </div>
+</body>
+</html>
